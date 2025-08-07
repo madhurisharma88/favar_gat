@@ -22,7 +22,5 @@ Data spans various protein families and ligand chemotypes
 Affinity data in .csv or .index format
 Metadata on resolution, source organism, PDB ID, etc.
 
-🗂 Version Used in This Project
-We use the PDBbind v2013 Core Set for evaluation and the Refined Set for model training.
-🔒 Note: PDBbind is not openly redistributable. To use it, register at the official site:
+🗂 Availability
 http://www.pdbbind.org.cn/
