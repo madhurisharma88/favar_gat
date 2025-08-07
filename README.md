@@ -10,7 +10,6 @@
 - 🧬 **Graph-based learning** with Graph Attention Networks (GAT)
 - 🧪 Supports benchmark datasets: **PDBbind**, **Davis**, **KIBA**, **BindingDB**
 - ⚙️ Modular design: easy to extend to other datasets and models
-- 🔐 Optionally supports privacy-preserving FL integration (e.g., CrypTen-FL)
 
 ---
 
@@ -62,9 +61,31 @@ Each dataset is preprocessed into:
 
 ---
 
-## 🚀 Installation
+## **Evaluation Metrics**
+- **MSE: Mean Squared Error**
+- **R²: Coefficient of Determination**
+- **CI: Concordance Index**
+- **AUC-ROC: Area Under the Receiver Operating Characteristic**
 
+---
+## 🚀 **Installation**
 ```bash
 git clone https://github.com/madhurisharma88/favar_gat.git
-cd FAVAR-GAT
-pip install -r requirements.txt
+```
+
+## Usage
+➤ Train the model
+```bash
+python train.py --dataset {dataset_name} --epochs 100 --batch_size 64
+```
+➤ Evaluate
+```bash
+python evaluate.py --dataset {dataset_name} --model_path saved_models/{saveddataset_name}.pt
+```
+➤ Available arguments
+- --dataset       &nbsp;&nbsp;&nbsp;&nbsp; Dataset name: pdbbind | davis | kiba | bindingdb
+- --epochs        &nbsp;&nbsp;&nbsp;&nbsp; Number of training epochs
+- --hidden_dim    &nbsp;&nbsp;&nbsp;&nbsp; Hidden dimensions
+- --fusion        &nbsp;&nbsp;&nbsp;&nbsp; Fusion type: concat | attention | mlp
+- --use_favar     &nbsp;&nbsp;&nbsp;&nbsp; Enable FAVAR temporal modeling
+
