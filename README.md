@@ -65,6 +65,6 @@ Each dataset is preprocessed into:
 ## 🚀 Installation
 
 ```bash
-git clone https://github.com/yourusername/FAVAR-GAT.git
+git clone https://github.com/madhurisharma88/favar_gat.git
 cd FAVAR-GAT
 pip install -r requirements.txt
