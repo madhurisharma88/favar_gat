@@ -1,10 +1,36 @@
-Dataset Description: Toward making use of the complementary information captured by the various bioactivity types, including IC50, K(i), and K(d), Tang et al. introduces a model-based integration approach, termed KIBA to generate an integrated drug-target bioactivity matrix.
-Task Description: Regression. Given the target amino acid sequence/compound SMILES string, predict their binding affinity.
-Dataset Statistics: 0.3.2 Update: 117,657 DTI pairs, 2,068 drugs, 229 proteins. Before: 118,036 DTI pairs, 2,068 drugs, 229 proteins.
-Dataset Split: Random Split Cold Drug Split Cold Protein Split
+📚 KIBA Dataset Description
+The KIBA dataset is a benchmark dataset for evaluating drug–target binding affinity prediction models. It integrates multiple bioactivity measures to provide a unified metric for drug–kinase interactions.
 
-Tips: Checkout the data processing page for binarization, label distribution visualization, edge list/DGL/PyTorch graph transformation.
+It was introduced in:
+"Collaborative filtering approach to the chemical–protein interaction problem"
+Tang et al., Bioinformatics, 2014.
+https://doi.org/10.1093/bioinformatics/btu285
 
-from tdc.multi_pred import DTI
-data = DTI(name = 'KIBA')
-split = data.get_split()
+🔬 Dataset Summary
+Targets: 229 unique kinases (proteins)
+Drugs: 2,111 small-molecule compounds
+Interactions: ~118,254 drug–target pairs (sparse matrix)
+Affinity Score: KIBA score (a unified score combining Ki, Kd, and IC50 data)
+
+✅ Lower KIBA score = higher binding affinity
+
+🧪 Format
+The dataset includes:
+A drug-target interaction matrix: rows are drugs, columns are targets
+KIBA scores as labels (real-valued, continuous)
+Optional: SMILES strings for drugs, amino acid sequences for proteins
+
+⚙️ Preprocessing
+We use the version of KIBA processed by DeepDTA or GraphDTA:
+KIBA scores are normalized or converted to negative values (optional) to align with regression targets (e.g., -KIBA or 1 / KIBA)
+Missing interactions are usually ignored
+
+📎 Source repositories:
+GraphDTA GitHub
+DeepDTA GitHub
+
+🧠 Applications
+The KIBA dataset is widely used in:
+Binding affinity regression models
+Deep learning (CNN, GNN, Transformer, FAVAR-GAT)
+Drug repurposing and virtual screening
