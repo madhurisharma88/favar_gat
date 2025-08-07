@@ -1,11 +1,32 @@
-DAVIS
-Dataset Description: The interaction of 72 kinase inhibitors with 442 kinases covering >80% of the human catalytic protein kinome.
-Task Description: Regression. Given the target amino acid sequence/compound SMILES string, predict their binding affinity.
-Dataset Statistics: 0.3.2 Update: 25,772 DTI pairs, 68 drugs, 379 proteins. Before: 27,621 DTI pairs, 68 drugs, 379 proteins.
-Dataset Split: Random Split Cold Drug Split Cold Protein Split
+📚 Davis Dataset Description
+The Davis dataset is a benchmark dataset widely used in drug–target interaction (DTI) modeling and binding affinity prediction tasks. It was originally introduced in the paper:
 
-Tips: Transforming to log-scale pIC50, pKi, and pKd can usually lead to more stable training. You can achieve this transformation via here. Checkout the data processing page for binarization, label distribution visualization, edge list/DGL/PyTorch graph transformation.
+"Improved prediction of drug–target interactions using regularized least squares with multiple kernels"
+Öztürk et al., Bioinformatics, 2013.
+https://doi.org/10.1093/bioinformatics/btt593
 
-from tdc.multi_pred import DTI
-data = DTI(name = 'DAVIS')
-split = data.get_split()
+🔬 Dataset Summary
+Targets: 442 kinase proteins
+Drugs: 68 small-molecule inhibitors
+Data Type: Continuous binding affinities (Kd values in nM)
+Size: 68 drugs × 442 targets = 30,056 interactions
+Label: The target variable is log(Kd) values (−log10 of dissociation constant in molar units)
+
+🧪 Format
+The dataset typically includes:
+A drug-target affinity matrix of shape [68 × 442]
+Molecular features for drugs (e.g., SMILES, fingerprints)
+Protein features (e.g., amino acid sequences or descriptors)
+
+🧠 Applications
+The Davis dataset is commonly used for:
+Binding affinity prediction using deep learning
+Drug repurposing studies
+Benchmarking graph-based or sequence-based models
+
+🗂️ Version Used in This Project
+We use the processed version of the Davis dataset as made available in the DeepDTA and GraphDTA repositories. Binding affinities are preprocessed to log-scale (pKd = -log10(Kd × 1e-9)).
+
+📎 Dataset sources:
+GraphDTA GitHub
+DeepDTA GitHub
