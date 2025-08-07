@@ -1,0 +1,28 @@
+📚 PDBbind Dataset Description
+The PDBbind dataset is a curated collection of experimentally measured binding affinities for protein–ligand complexes, derived from the Protein Data Bank (PDB). It is widely used in computational drug discovery, especially for:
+Structure-based virtual screening
+Binding affinity prediction
+Deep learning model training and benchmarking
+
+🧪 Dataset Composition
+PDBbind consists of three subsets:
+General Set: All protein–ligand complexes with known 3D structures and binding data.
+Refined Set: A subset of the general set with higher quality, filtered based on structural resolution and binding data reliability.
+Core Set: A carefully selected benchmark set used for testing, not training.
+
+🔬 Features
+3D structures of complexes (.pdb files)
+Binding affinity data (Kd, Ki, IC50, converted to log-scale)
+Molecular descriptors and fingerprints (optional)
+Ligand and protein SMILES/InChI (in some versions)
+Data spans various protein families and ligand chemotypes
+
+📦 Dataset Format
+.mol2, .pdb, .sdf files for ligands and receptors
+Affinity data in .csv or .index format
+Metadata on resolution, source organism, PDB ID, etc.
+
+🗂 Version Used in This Project
+We use the PDBbind v2013 Core Set for evaluation and the Refined Set for model training.
+🔒 Note: PDBbind is not openly redistributable. To use it, register at the official site:
+http://www.pdbbind.org.cn/
