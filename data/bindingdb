@@ -1,0 +1,13 @@
+Dataset Description: BindingDB is a public, web-accessible database of measured binding affinities, focusing chiefly on the interactions of protein considered to be drug-targets with small, drug-like molecules.
+Task Description: Regression. Given the target amino acid sequence/compound SMILES string, predict their binding affinity.
+Dataset Statistics: (# of DTI pairs, # of drugs, # of proteins) 52,284/10,665/1,413 for Kd, 991,486/549,205/5,078 for IC50, 375,032/174,662/3,070 for Ki.
+Dataset Split: Random Split Cold Drug Split Cold Protein Split
+
+Note: BindingDB is the collection of many assays. Since different assays use different metrics, TDC separates them as separate datasets. Specifically, it has four datasets with Kd, IC50, Ki as the units.
+Tips: Transforming to log-scale pIC50, pKi, and pKd can usually lead to more stable training. You can achieve this transformation via here. Checkout the data processing page for binarization, label distribution visualization, edge list/DGL/PyTorch graph transformation.
+
+from tdc.multi_pred import DTI
+data = DTI(name = 'BindingDB_Kd')
+# data = DTI(name = 'BindingDB_IC50')
+# data = DTI(name = 'BindingDB_Ki')
+split = data.get_split()
