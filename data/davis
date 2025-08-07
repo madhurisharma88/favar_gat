@@ -1,1 +1,11 @@
+DAVIS
+Dataset Description: The interaction of 72 kinase inhibitors with 442 kinases covering >80% of the human catalytic protein kinome.
+Task Description: Regression. Given the target amino acid sequence/compound SMILES string, predict their binding affinity.
+Dataset Statistics: 0.3.2 Update: 25,772 DTI pairs, 68 drugs, 379 proteins. Before: 27,621 DTI pairs, 68 drugs, 379 proteins.
+Dataset Split: Random Split Cold Drug Split Cold Protein Split
 
+Tips: Transforming to log-scale pIC50, pKi, and pKd can usually lead to more stable training. You can achieve this transformation via here. Checkout the data processing page for binarization, label distribution visualization, edge list/DGL/PyTorch graph transformation.
+
+from tdc.multi_pred import DTI
+data = DTI(name = 'DAVIS')
+split = data.get_split()
