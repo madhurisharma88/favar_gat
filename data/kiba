@@ -1,1 +1,10 @@
+Dataset Description: Toward making use of the complementary information captured by the various bioactivity types, including IC50, K(i), and K(d), Tang et al. introduces a model-based integration approach, termed KIBA to generate an integrated drug-target bioactivity matrix.
+Task Description: Regression. Given the target amino acid sequence/compound SMILES string, predict their binding affinity.
+Dataset Statistics: 0.3.2 Update: 117,657 DTI pairs, 2,068 drugs, 229 proteins. Before: 118,036 DTI pairs, 2,068 drugs, 229 proteins.
+Dataset Split: Random Split Cold Drug Split Cold Protein Split
 
+Tips: Checkout the data processing page for binarization, label distribution visualization, edge list/DGL/PyTorch graph transformation.
+
+from tdc.multi_pred import DTI
+data = DTI(name = 'KIBA')
+split = data.get_split()
