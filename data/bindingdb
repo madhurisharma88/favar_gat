@@ -1,13 +1,43 @@
-Dataset Description: BindingDB is a public, web-accessible database of measured binding affinities, focusing chiefly on the interactions of protein considered to be drug-targets with small, drug-like molecules.
-Task Description: Regression. Given the target amino acid sequence/compound SMILES string, predict their binding affinity.
-Dataset Statistics: (# of DTI pairs, # of drugs, # of proteins) 52,284/10,665/1,413 for Kd, 991,486/549,205/5,078 for IC50, 375,032/174,662/3,070 for Ki.
-Dataset Split: Random Split Cold Drug Split Cold Protein Split
+📚 BindingDB Dataset Description
+BindingDB is a publicly available database of measured binding affinities, designed to support drug discovery, target identification, and machine learning-based binding prediction. It contains experimental data for interactions between proteins (mainly human drug targets) and small molecule ligands.
 
-Note: BindingDB is the collection of many assays. Since different assays use different metrics, TDC separates them as separate datasets. Specifically, it has four datasets with Kd, IC50, Ki as the units.
-Tips: Transforming to log-scale pIC50, pKi, and pKd can usually lead to more stable training. You can achieve this transformation via here. Checkout the data processing page for binarization, label distribution visualization, edge list/DGL/PyTorch graph transformation.
+📖 Citation:
+Liu et al., BindingDB: A web-accessible database of experimentally determined protein–ligand binding affinities, Nucleic Acids Research, 2007.
+https://www.bindingdb.org/
 
-from tdc.multi_pred import DTI
-data = DTI(name = 'BindingDB_Kd')
-# data = DTI(name = 'BindingDB_IC50')
-# data = DTI(name = 'BindingDB_Ki')
-split = data.get_split()
+🔬 Dataset Summary
+Ligands: ~1.5 million small molecules
+Targets: ~8,000 proteins (with UniProt IDs)
+Interactions: ~2 million compound–protein binding records
+Binding Types: Ki, Kd, IC50, EC50, and more
+Species: Primarily human, but also includes mouse, rat, etc.
+Target Data: UniProt accessions, sequences, target organism
+Compound Data: SMILES strings, InChI, PubChem IDs
+
+🧪 Format
+The dataset is typically available in:
+CSV files with columns such as:
+  BindingDB Target Chain Sequence
+  Ligand SMILES
+  Ki (nM), Kd (nM), IC50 (nM)
+  UniProt ID, BindingDB Target Name
+  PubChem CID, ChEMBL ID, etc.
+Some versions provide 3D structures or SDF files.
+
+⚙️ Preprocessing (in this project)
+We use a cleaned version of BindingDB filtered for:
+Human proteins only
+Valid SMILES and sequences
+Affinity types normalized to pKi (−log10(Ki × 1e-9))
+Duplicates removed and affinities converted to molar units
+
+🧼 Common preprocessing steps:
+Drop missing or inconsistent records
+Retain only one affinity type (e.g., Ki) for regression
+Remove outliers or non-numeric values
+
+🧠 Applications
+BindingDB is used in:
+Drug–target interaction prediction (regression/classification)
+Training deep learning models (e.g., CNNs, Transformers, GNNs)
+Drug repurposing and target prioritization
